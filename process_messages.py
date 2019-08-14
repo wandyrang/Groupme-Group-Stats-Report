@@ -13,16 +13,19 @@ USEFUL PYTHON MODULES FOR G-MO
 
 
 how to set the access token to an environment variable?
+Create a .env file and name your token: ''Enviroment Variable
 how to modularize searching for a group? (ask for user input?) how to modularize groupme access token? (probably not)
 '''
 import json
 import requests
 import urllib3
+import os
 
 # this is to ignore the ssl insecure warning as we are passing in 'verify=false'
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-url = 'https://api.groupme.com/v3/groups?token=0JciRCJ1rtu76aWqueZRGIH4YVt9TUxJaseNFazg'
+token = os.environ['MY_SECRET_TOKEN']
+url = 'https://api.groupme.com/v3/groups?token=' + token
 
 '''
 proxy is needed if running on Intel network
@@ -32,7 +35,7 @@ ftp_proxy   = "ftp://proxy-us.intel.com:911"
 
 proxyDict = { 
               "http"  : http_proxy,
-              "https" : https_proxy, 
+              "https" : https_proxy,
               "ftp"   : ftp_proxy
             }
 response = requests.get(url, verify=False, proxies=proxyDict)
