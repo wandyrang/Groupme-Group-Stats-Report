@@ -22,7 +22,7 @@ import urllib3
 # this is to ignore the ssl insecure warning as we are passing in 'verify=false'
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-url = 'https://api.groupme.com/v3/groups?token=0JciRCJ1rtu76aWqueZRGIH4YVt9TUxJaseNFazg'
+url = 'https://api.groupme.com/v3/groups?token='
 
 '''
 proxy is needed if running on Intel network
