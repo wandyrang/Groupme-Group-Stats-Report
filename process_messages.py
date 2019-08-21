@@ -38,13 +38,13 @@ import urllib3
 import os
 from Person import Person
 
-'''
-Takes a dictionary response/GroupMe JSON as input. This is a list of dictionaries.
-Prompts user to choose which Groupme group they want to run script on.
-It will return a single dictionary of the correct group.
-'''
-def get_group(response):
 
+def get_group(response):
+    '''
+    Takes a dictionary response/GroupMe JSON as input. This is a list of dictionaries.
+    Prompts user to choose which Groupme group they want to run script on.
+    It will return a single dictionary of the correct group.
+    '''
     # If only in 1 group, get it over with and return the group
     if len(response["response"]) <= 1:
         return response["response"][0]
@@ -53,17 +53,17 @@ def get_group(response):
         for i, groups in enumerate(response["response"], start=1):
             print(i, groups["name"])
 
+
     proper_group = int(input("What group, would you like to parse? "))
 
     return response["response"][proper_group-1]
 
 
-
-'''
-Takes a dictionary JSON with just one group.
-It will return a list of initialized objects of each person in the group.
-'''
 def create_persons(group):
+    '''
+    Takes a dictionary JSON with just one group.
+    It will return a list of initialized objects of each person in the group.
+    '''
     list_of_people = []
 
     for person in group["members"]:
@@ -73,6 +73,11 @@ def create_persons(group):
     return list_of_people
 
 
+def process_message():
+    pass
+
+def process_people():
+    pass
 
 def main():
     # Be sure to add the token to .env
