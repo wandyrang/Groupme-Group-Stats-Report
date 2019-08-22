@@ -36,7 +36,7 @@ import json
 import requests
 import urllib3
 import os
-from Person import Person
+from person import Person
 
 
 def get_group(response):
