@@ -61,7 +61,7 @@ SETUP FOR LIKES RECEIVED (PEOPLE, LIKES RECEIVED)
 '''
 lr = dict()
 for i in range(len(names)):
-    lr[names[i]] = (likes_r[i]-data[names[i]][i])
+    lr[names[i]] = (likes_r[i])
 people_lr = []
 popular = []
 for i in sorted(lr.items(), key=lambda x:x[1]):
