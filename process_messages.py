@@ -90,16 +90,18 @@ def process_message(messages, people):
             if msg["text"] != None:
                 msg_sender.chars += len(msg["text"])
 
-            # Increment likes dict in Person obj if msg was liked
+            # Increment likes in Person obj if msg was liked
             if likes:
                 msg_sender.likes_received += len(likes)
-                # Subtract a like if they liked themself
-                if msg_sender.id in likes:
-                    msg_sender.likes_received -= 1
                 # Update friends
                 for dude in likes:
                     if dude in msg_sender.friends:
                         msg_sender.friends[dude] += 1
+                        people[dude].likes_given += 1
+                        
+                # Subtract a like if they liked themself
+                if msg_sender.id in likes:
+                    msg_sender.likes_received -= 1
             
 
 def process_people(dict_people, group_id):
@@ -115,14 +117,16 @@ def process_people(dict_people, group_id):
     messages = msg_json["response"]["messages"] # List of dicts
     last_message_id = messages[-1]["id"]
     count = msg_json["response"]["count"]
+    print(f"Total messages sent:{count}")
 
     # Loop through all of the GroupMe messages in the chat
     done_processing = False
     while (not done_processing):
-        print("Parsing... messages left:",count)
+        print(f"Parsing... messages left: {count}")
         if count <= 100:
-            print(url)
             done_processing = True
+            count = count - len(messages)
+            print(f"Parsing... messages left: {count}")
             process_message(messages, dict_people)
             break
 
@@ -153,10 +157,14 @@ def main():
     people = create_persons(group)
     proc_people = process_people(people, group["group_id"])
 
+
     print("\n\n**************************") 
     print("PRINTING VALUE OF PROCESSED PPL")
-    for bitch in proc_people.values():
-        print(bitch)
+    sum = 0
+    for bitches in proc_people.values():
+        print(bitches)
+
+    print(f"Total messages anaylzed{sum}")
 
     print("\n\n**************************") 
 
