@@ -18,10 +18,6 @@ class Person(object):
         self.likes_received = 0
         self.msgs = 0
         self.chars = 0
-        self.image_url = image_url
-        self.friends = dict()
-        for member in members:
-            self.friends.update({ member : 0 })
 
     # Basic print
     def __repr__(self):

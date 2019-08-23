@@ -34,7 +34,10 @@ SETUP FOR CHAR/MESSAGE (PEOPLE, CHAR/MESSAGE)
 '''
 chars = dict()
 for i in range(len(names)):
-    chars[names[i]] = round((char_count[i]/msgs[i]), 2)
+    if msgs[i] == 0:
+        chars[names[i]] = 0      
+    else:
+        chars[names[i]] = round((char_count[i]/msgs[i]), 2)
 people_char = []
 verbose = []
 for i in sorted(chars.items(), key=lambda x:x[1]):
@@ -70,7 +73,10 @@ SETUP FOR CHAR/MESSAGE (PEOPLE, CHAR/MESSAGE)
 '''
 lpm = dict()
 for i in range(len(names)):
-    lpm[names[i]] = round((likes_r[i]/msgs[i]), 2)
+    if msgs[i] == 0:
+        lpm[names[i]] = 0       
+    else:
+        lpm[names[i]] = round((likes_r[i]/msgs[i]), 2)
 people_qual = []
 quality = []
 for i in sorted(lpm.items(), key=lambda x:x[1]):
@@ -160,7 +166,7 @@ for i,v in enumerate(self_l):
     
 plt.tight_layout()
 plt.grid(False)
-
+plt.show()
 fig1.savefig('most_msgs.png')
 fig2.savefig('char_per_msg.png')
 fig3.savefig('likes_given.png')
