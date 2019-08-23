@@ -29,6 +29,7 @@ import json
 import requests
 import urllib3
 import os
+import csv
 from person import Person
 
 TOKEN= os.environ['MY_SECRET_TOKEN']
@@ -171,7 +172,27 @@ def main():
     group = get_group(response_json)
     people = create_persons(group)
     proc_people = process_people(people, group["group_id"])
-
+    new_keys = []
+    for userid in proc_people:
+        new_keys.append(proc_people[userid].name)
+    for userid in proc_people:
+        proc_people[userid].friends = dict(zip(new_keys, list(proc_people[userid].friends.values())))
+    
+    headers = ['Name', 'Messages', 'Char Count', 'Likes Given', 'Likes Received', 'Image URL']
+    members = proc_people.values()
+    for member in members:
+        headers.append(member.name)    
+    with open('raw_groupme_data.csv', 'w') as csv_file:
+        csv_writer = csv.writer(csv_file)
+        csv_writer.writerow(headers)
+        for member in members:
+            row = [member.name, member.msgs, member.chars, member.likes_given, 
+                   member.likes_received, member.image_url]
+            print(member.friends)
+            for friend in member.friends:
+                row.append(member.friends[friend])
+                print(member.friends[friend])
+            csv_writer.writerow(row)
 
     print("\n\n**************************") 
     print("PRINTING VALUE OF PROCESSED PPL")
