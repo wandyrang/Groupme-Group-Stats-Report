@@ -9,7 +9,7 @@ class Person(object):
         self.nickname = nickname
         self.friends = dict()
         self.members = members
-        # Track likes recieved by whom
+        # Track likes recieved by whom by user_id
         for member in self.members:
             self.friends.update({ member : 0 })
         self.image_url = image_url
@@ -32,6 +32,7 @@ class Person(object):
                 f"likes_received: {self.likes_received}\n"
                 f"msgs: {self.msgs}\n"
                 f"chars: {self.chars}\n"
-                f"image_url:{self.image_url}\n")
+                f"image_url:{self.image_url}\n"
+                f"friends:{self.friends}\n")
 
 

@@ -61,7 +61,7 @@ def create_persons(group):
 
     # Create list of strings to pass and create People objects later
     for member in group["members"]:
-        list_of_people.append(member["name"])
+        list_of_people.append(member["user_id"])
 
     # For each member create a Person object and append to dict
     for person in group["members"]:
@@ -76,16 +76,31 @@ def create_persons(group):
 def process_message(messages, people):
     '''
     Recieves a dict of id/people key/value pairs and a message id
-        it will call the API consecutively and mutate the dict of 
-        people, incrementing the necessary fields.
+        it will consecutively mutate the dict of people, 
+        incrementing the necessary fields.
     '''
 
     for msg in messages:
-        if msg["sender_id"] in people:
-            msg_sender = people[msg["sender_id"]].name
-            print(f"{msg_sender} sent:")
-            print(msg["text"])
-    
+        sender_id = msg["sender_id"]
+        likes = msg["favorited_by"]
+        # Make sure key is in dict (Some people can leave the group)
+        if sender_id in people:
+            msg_sender = people[sender_id]
+            msg_sender.msgs += 1
+            if msg["text"] != None:
+                msg_sender.chars += len(msg["text"])
+
+            # Increment likes dict in Person obj if msg was liked
+            if likes:
+                msg_sender.likes_received += len(likes)
+                # Subtract a like if they liked themself
+                if msg_sender.id in likes:
+                    msg_sender.likes_received -= 1
+                # Update friends
+                for dude in likes:
+                    if dude in msg_sender.friends:
+                        msg_sender.friends[dude] += 1
+            
 
 def process_people(dict_people, group_id):
     '''
