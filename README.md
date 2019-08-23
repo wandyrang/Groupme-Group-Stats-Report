@@ -11,12 +11,12 @@
 # Installation
 * Setup a developer account at https://dev.groupme.com and get your OAuth token💥
 * Install the [pipenv virtual environment](https://docs.pipenv.org/en/latest/)! This keeps track of our python packages and helps with secret keys 😌
-    - It _should_ be as easy as running `pip3 install pipenv`
+    - It _should_ be as easy as running: `pip install pipenv`
 * Run pipenv & Install Packages:
     - `pipenv shell`
     - `pipenv install --dev`
-* Put your OAuth token in a `.env` file. As per this [stackoverflow](https://stackoverflow.com/questions/51227159/how-do-i-set-environment-variables-in-pipenv). Your script will source it.
-    - `echo MY_SECRET_TOKEN=WhateverYourTokenIS >.env`
+* Put your OAuth token in a `.env` file. As per this [stackoverflow](https://stackoverflow.com/questions/51227159/how-do-i-set-environment-variables-in-pipenv). Our script will source it.
+    - In your terminal you can do something like: `echo MY_SECRET_TOKEN='WhateverYourTokenIS' >.env`
 
 
 # Development (RANDY)
