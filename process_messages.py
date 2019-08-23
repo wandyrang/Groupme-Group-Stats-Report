@@ -101,7 +101,7 @@ def process_people(dict_people, group_id):
     # Loop through all of the messages in the API call
     done_processing = False
     while (not done_processing):
-        print("THE COUNT IS:",count)
+        print("Parsing... messages left:",count)
         if count <= 100:
             done_processing = True
             process_message(messages, dict_people)
@@ -113,6 +113,7 @@ def process_people(dict_people, group_id):
         url = f'https://api.groupme.com/v3/groups/{group_id}/messages?token='\
               f'{TOKEN}&limit={limit}&before_id={last_message_id}'
         print("THE FUCKKING URL IS",url)
+        print("You SUCK JUST QUIT BITCH")
         response = requests.get(url)
         msg_json = json.loads(response.text)
         messages = msg_json["response"]["messages"] # List of dicts
@@ -131,15 +132,16 @@ def main():
     response_json = json.loads(response.text)
 
     # Parse the json to get the group
-    #group = response_json["response"][2] # Hard coded for now
     group = get_group(response_json)
     people = create_persons(group)
     proc_people = process_people(people, group["group_id"])
 
-    print("\n\nPRINTING VALUE OF PROCESSED PPL")
-    for dude in proc_people:
-        print(dude.values)
+    print("\n\n**************************") 
+    print("PRINTING VALUE OF PROCESSED PPL")
+    for bitch in proc_people.values():
+        print(bitch)
 
+    print("\n\n**************************") 
 
 if __name__ == '__main__':
     main()
