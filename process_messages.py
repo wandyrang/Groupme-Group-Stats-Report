@@ -18,6 +18,7 @@ from person import Person
 
 TOKEN= os.environ['MY_SECRET_TOKEN']
 
+
 def get_group(response):
     '''
     Takes a dictionary response/GroupMe JSON as input
@@ -64,7 +65,7 @@ def create_persons(group):
 
     # For each member create a Person object and append to dict
     for person in group["members"]:
-        new_person_obj = Person(person["id"], person["name"], 
+        new_person_obj = Person(person["user_id"], person["name"], 
                                 person["image_url"], person["nickname"], 
                                 list_of_people)
         dict_of_people_obj.update({new_person_obj.id: new_person_obj})
@@ -78,8 +79,12 @@ def process_message(messages, people):
         it will call the API consecutively and mutate the dict of 
         people, incrementing the necessary fields.
     '''
-    #for msg in messages:
-        #print(json.dumps(msg, indent=2))
+
+    for msg in messages:
+        if msg["sender_id"] in people:
+            msg_sender = people[msg["sender_id"]].name
+            print(f"{msg_sender} sent:")
+            print(msg["text"])
     
 
 def process_people(dict_people, group_id):
@@ -96,13 +101,12 @@ def process_people(dict_people, group_id):
     last_message_id = messages[-1]["id"]
     count = msg_json["response"]["count"]
 
-    print("The length of the messags: ", len(messages))
-    
-    # Loop through all of the messages in the API call
+    # Loop through all of the GroupMe messages in the chat
     done_processing = False
     while (not done_processing):
         print("Parsing... messages left:",count)
         if count <= 100:
+            print(url)
             done_processing = True
             process_message(messages, dict_people)
             break
@@ -112,8 +116,6 @@ def process_people(dict_people, group_id):
         # Create URL again anew
         url = f'https://api.groupme.com/v3/groups/{group_id}/messages?token='\
               f'{TOKEN}&limit={limit}&before_id={last_message_id}'
-        print("THE FUCKKING URL IS",url)
-        print("You SUCK JUST QUIT BITCH")
         response = requests.get(url)
         msg_json = json.loads(response.text)
         messages = msg_json["response"]["messages"] # List of dicts
