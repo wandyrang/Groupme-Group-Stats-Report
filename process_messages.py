@@ -172,12 +172,15 @@ def main():
     group = get_group(response_json)
     people = create_persons(group)
     proc_people = process_people(people, group["group_id"])
+    
+    # Change the keys of the friends dictionary from id's to names
     new_keys = []
     for userid in proc_people:
         new_keys.append(proc_people[userid].name)
     for userid in proc_people:
         proc_people[userid].friends = dict(zip(new_keys, list(proc_people[userid].friends.values())))
-    
+        
+    # write all the data to a csv file
     headers = ['Name', 'Messages', 'Char Count', 'Likes Given', 'Likes Received', 'Image URL']
     members = proc_people.values()
     for member in members:
