@@ -33,6 +33,6 @@
 
 This theme is maintained by the following person(s).
 
-[![Randy Wang](https://avatars1.githubusercontent.com/u/42878069?s=400&v=4)](https://github.com/wandyrandy) | [![Guillermo Rodriguez](https://avatars3.githubusercontent.com/u/32819563?s=460&v=4)](https://github.com/pineapplegiant)
+[![Randy Wang](https://avatars1.githubusercontent.com/u/42878069?s=70&v=3)](https://github.com/wandyrandy) | [![Guillermo Rodriguez](https://avatars3.githubusercontent.com/u/32819563?s=70&v=3)](https://github.com/pineapplegiant)
 --- | ---
 [Randy](https://github.com/wandyrandy) | [Gmo](https://github.com/pineapplegiant)
