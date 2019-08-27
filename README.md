@@ -19,7 +19,7 @@
     - In your terminal you can do something like: `echo MY_SECRET_TOKEN='WhateverYourTokenIS' >.env` 🤔
 
 
-### Development
+## Development
 * Make sure you're in the virtual environment when you're working on stuff! 🖥
     - `pipenv shell` 
 * If you wanna install packages just do:
@@ -28,3 +28,11 @@
         - `pipenv lock` 
 
 * Obviously run `git pull` before you push. I'm gonna make my own branch so I don't mess up your stuff too much.
+
+## Team
+
+This theme is maintained by the following person(s).
+
+[![Randy Wang](https://avatars1.githubusercontent.com/u/42878069?s=70&v=3)](https://github.com/wandyrandy) | [![Guillermo Rodriguez](https://avatars3.githubusercontent.com/u/32819563?s=70&v=3)](https://github.com/pineapplegiant)
+--- | ---
+[Randy](https://github.com/wandyrandy) | [Gmo](https://github.com/pineapplegiant)
