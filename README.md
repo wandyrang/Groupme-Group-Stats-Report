@@ -1,4 +1,6 @@
 # Groupme-Group-Stats-Report 🧮 📊
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![Python: 3.7](https://img.shields.io/badge/Python-Python%203.7-brightgreen)](https://img.shields.io/badge/Python-Python%203.7-brightgreen)
+
 ![Math is fun!](https://media.giphy.com/media/9cpXRPjZuo6pq/giphy.gif)
 
 
